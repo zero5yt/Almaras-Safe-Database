@@ -18,6 +18,7 @@ pip install requests
 
 # Clone the Repository
 https://github.com/zero5yt/Almaras-Safe-Database.git
+ls
 cd Almaras-Firebase-Guard
 
 # Run the Security Tester
