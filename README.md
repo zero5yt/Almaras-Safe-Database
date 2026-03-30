@@ -1,7 +1,7 @@
 # <p align="center">🛡️ ALMARAS FIREBASE GUARD 🛡️</p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=30&pause=1000&color=00E5FF&center=true&vCenter=true&width=600&lines=Welcome+to+almaras+github;Securing+JetMax+Application;Firebase+Rules+are+now+Active;Hacker+Access+is+Blocked!+🔥" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=30&pause=1000&color=00E5FF&center=true&vCenter=true&width=600&lines=Welcome+to+almaras+github;Securing+Streamix+Application;Firebase+Rules+are+now+Active;Hacker+Access+is+Blocked!+🔥" alt="Typing SVG" />
 </p>
 
 ### 🚀 PROJECT OVERVIEW
